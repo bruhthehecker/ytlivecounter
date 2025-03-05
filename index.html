@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Live Viewers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function redirectToResults() {
+            const url = document.getElementById('youtube-url').value;
+            const videoId = extractVideoId(url);
+            if (videoId) {
+                window.location.href = `results.html?videoId=${videoId}`;
+            } else {
+                alert('Invalid YouTube URL');
+            }
+        }
+
+        function extractVideoId(url) {
+            const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+            return match ? match[1] : null;
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center h-screen">
+    <div class="text-center">
+        <h1 class="text-3xl font-bold mb-4">YouTube Live Viewers Tracker</h1>
+        <input id="youtube-url" type="text" placeholder="Enter YouTube Live URL" class="px-4 py-2 text-black rounded w-80">
+        <button onclick="redirectToResults()" class="mt-4 bg-red-600 px-6 py-2 rounded text-white hover:bg-red-700">Track Live Viewers</button>
+    </div>
+    <footer class="absolute bottom-4 text-gray-400 text-sm">
+        Powered by <a href="https://www.instagram.com/hek3i" class="text-red-500 hover:underline">hek3i</a>
+    </footer>
+</body>
+</html>
